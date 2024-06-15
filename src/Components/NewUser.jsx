@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import '../CSS/Login.css'
+import styles from '../CSS/NewUser.module.css'
 import { Avatar, Grid, Link, Paper, TextField } from '@mui/material'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useNavigate } from 'react-router-dom'

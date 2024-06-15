@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import '../CSS/Login.css'
+import styles from '../CSS/Login.module.css'
 import { Avatar, Grid, Link, Paper, TextField } from '@mui/material'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useNavigate } from 'react-router-dom';
@@ -27,11 +27,11 @@ function Login() {
 
 
     return (
-        <div className='container'>
+        <div className={styles.container}>
             <Grid >
-                <Paper className='paper' elevation={10} >
+                <Paper className={styles.paper} elevation={10} >
                     <Grid align='center'>
-                        <Avatar className='avatar-login'><AccountCircleIcon /></Avatar>
+                        <Avatar className={styles['avatar-login']}><AccountCircleIcon /></Avatar>
                         <h2> Yönetici Giriş</h2>
                     </Grid>
 
@@ -56,7 +56,7 @@ function Login() {
                         onChange={(e) => setPassword(e.target.value)}
                     />
 
-                    <button className='button-login' type='submit' onClick={handleLogin}>Giriş Yapınız</button>
+                    <button className={styles['button-login']} type='submit' onClick={handleLogin}>Giriş Yapınız</button>
 
 
 
@@ -66,9 +66,9 @@ function Login() {
             </Grid>
 
             <Grid >
-                <Paper className='paper' elevation={10} >
+                <Paper className={styles.paper} elevation={10} >
                     <Grid align='center'>
-                        <Avatar className='avatar'><AccountCircleIcon /></Avatar>
+                        <Avatar className={styles.avatar}><AccountCircleIcon /></Avatar>
                         <h2> Kullanıcı Girişi</h2>
                     </Grid>
 
@@ -91,9 +91,9 @@ function Login() {
 
                     />
 
-                    <button className='button' type='submit' >Giriş Yapınız</button>
+                    <button className={styles.button} type='submit' >Giriş Yapınız</button>
 
-                    <Link className='link' href="/newUser" >
+                    <Link className={styles.link} href="/newUser" >
                         Yeni hesap oluştur
                     </Link>
 
