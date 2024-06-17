@@ -18,9 +18,9 @@ function newUser() {
     return (
         <div>
             <Grid >
-                <Paper className='paper' elevation={10} >
+                <Paper className={styles.paper} elevation={10} >
                     <Grid align='center'>
-                        <Avatar className='avatar'><AccountCircleIcon /></Avatar>
+                        <Avatar className={styles.avatar}><AccountCircleIcon /></Avatar>
                         <h2>Kayıt Olunuz</h2>
                     </Grid>
                     <TextField id="standard-basic-1" label="Kullanıcı Adı" variant='standard' placeholder='Kullanıcı Adı' fullWidth />
@@ -36,7 +36,7 @@ function newUser() {
                         variant='standard'
                         fullWidth
                     />
-                    <button className='button' type='submit' onClick={handleButtonClick}>Kaydolunuz</button>
+                    <button className={styles.button} type='submit' onClick={handleButtonClick}>Kaydolunuz</button>
                 </Paper>
 
             </Grid>

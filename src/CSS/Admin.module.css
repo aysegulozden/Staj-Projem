@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
 }
 
 .admin-container {
@@ -10,7 +11,10 @@
     height: 100vh;
     background-color: #D2F6FC;
 
+
 }
+
+
 
 .logo {
     width: 140px;
@@ -36,13 +40,25 @@
     color: #fff;
     display: inline-block;
     margin: 10px 20px;
-    font-size: 20px;
+    font-size: 25px;
     cursor: pointer;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
 
 .ul li:hover {
     color: #23374D;
 
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+    /* Hover sırasında alt çizgi ekle (isteğe bağlı) */
 }
 
 .search-box {

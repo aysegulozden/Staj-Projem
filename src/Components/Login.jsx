@@ -94,7 +94,7 @@ function Login() {
                     <button className={styles.button} type='submit' >Giriş Yapınız</button>
 
                     <Link className={styles.link} href="/newUser" >
-                        Yeni hesap oluştur
+                        Kayıt Ol
                     </Link>
 
 

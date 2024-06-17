@@ -4,16 +4,18 @@ import Login from './Components/Login'
 import { Routes, Route } from 'react-router-dom'
 import NewUser from './Components/NewUser'
 import AdminPage from './Components/AdminPage'
+import LoginNewUser from './Components/LoginNewUser'
 
 function App() {
-  const [theme, setTheme] = useState('light');
+
 
   return (
     <div>
       <Routes>
         <Route path='/' element={<Login />} />
         <Route path='/newUser' element={<NewUser />} />
-        <Route path='/admin' element={<AdminPage />} theme={theme} setTheme={setTheme} />
+        <Route path='/admin' element={<AdminPage />} />
+        <Route path='/LoginNewUser' element={<LoginNewUser />} />
 
       </Routes>
 
