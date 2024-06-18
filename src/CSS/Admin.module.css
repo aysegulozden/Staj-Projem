@@ -5,17 +5,6 @@
 
 }
 
-.admin-container {
-    margin: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: #D2F6FC;
-
-
-}
-
-
-
 .logo {
     width: 140px;
     cursor: pointer;
@@ -51,15 +40,32 @@
 }
 
 .nav-link {
-    color: white;
+    color: #fefefe;
     text-decoration: none;
+    position: relative;
+    transition: color 0.25rem;
 
 }
 
 .nav-link:hover {
-    text-decoration: underline;
-    /* Hover sırasında alt çizgi ekle (isteğe bağlı) */
+    color: #23374D;
+
 }
+
+.nav-link::after {
+    position: absolute;
+    content: "";
+    inset: 0;
+    background-color: #fefefe;
+    scale: 1 0;
+    z-index: -1;
+    transition: 0.45s;
+}
+
+.nav-link:hover::after {
+    scale: 1 1;
+}
+
 
 .search-box {
     display: flex;

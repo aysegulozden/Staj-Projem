@@ -1,5 +1,4 @@
 .container {
-
     margin-top: 50px;
     display: flex;
     justify-content: space-around;
@@ -11,23 +10,11 @@
 .paper {
     margin-top: 80px;
     padding: 80px;
-    height: 50vh;
-    width: 340px;
+    height: 60vh;
+    width: 380px;
     margin: 20px auto;
 
 
-
-}
-
-.paper .avatar {
-
-    background-color: #9874EE;
-
-}
-
-.paper .avatar-login {
-
-    background-color: #FF7C1F;
 
 }
 
