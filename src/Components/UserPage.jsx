@@ -16,7 +16,7 @@ function UserPage() {
                     <Link to='/HaritaUser'><li>Harita</li></Link>
                     <Link to='/aktivite'>
                         <li>Sosyal Aktiviteler</li></Link>
-                    <Link to='/contact'><li>İletişim</li></Link>
+                    <Link to='/Iletisim'><li>İletişim</li></Link>
 
 
 
