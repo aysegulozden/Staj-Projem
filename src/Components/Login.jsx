@@ -24,6 +24,9 @@ function Login() {
             setPassword('');
         }
     };
+    const girisUser = () => {
+        navigate('/UserPage')
+    }
 
 
     return (
@@ -91,7 +94,7 @@ function Login() {
 
                     />
 
-                    <button className={styles.button} type='submit' >Giriş Yapınız</button>
+                    <button className={styles.button} type='submit' onClick={girisUser} >Giriş Yapınız</button>
 
                     <Link className={styles.link} href="/newUser" >
                         Kayıt Ol

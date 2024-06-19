@@ -1,0 +1,96 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+.logo {
+    width: 140px;
+    cursor: pointer;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #067EED;
+    padding: 15px 7%;
+}
+
+.ul {
+    flex: 1;
+    list-style: none;
+    text-align: center;
+
+}
+
+.ul li {
+    color: #fff;
+    display: inline-block;
+    margin: 10px 20px;
+    font-size: 30px;
+    cursor: pointer;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+.ul li:hover {
+    color: #23374D;
+
+}
+
+.nav-link {
+    color: #fefefe;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.25rem;
+
+}
+
+.nav-link:hover {
+    color: #23374D;
+
+}
+
+.nav-link::after {
+    position: absolute;
+    content: "";
+    inset: 0;
+    background-color: #fefefe;
+    scale: 1 0;
+    z-index: -1;
+    transition: 0.45s;
+}
+
+.nav-link:hover::after {
+    scale: 1 1;
+}
+
+
+.search-box {
+    display: flex;
+    align-items: center;
+    background: #D2F6FC;
+    padding: 10px 20px;
+    border-radius: 50px;
+
+}
+
+.search-box input {
+    padding: 6px;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    color: #fff;
+    font-size: 15px;
+}
+
+.search-box input::placeholder {
+    color: #23374D;
+}
+
+.icon {
+    width: 20px;
+    cursor: pointer;
+
+}

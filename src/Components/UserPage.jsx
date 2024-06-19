@@ -1,33 +1,24 @@
-import React, { useState } from 'react'
-import styles from '../CSS/Admin.module.css'
+import React from 'react'
 import SearchIcon from '@mui/icons-material/Search';
 import Logo from '../image/Logo.png'
 import { Link } from 'react-router-dom';
+import styles from '../CSS/UserPage.module.css'
 
-
-
-
-function AdminPage() {
-
-
-
+function UserPage() {
 
     return (
-        <div className={styles['admin-container']}>
+        <div className={styles['User-container']}>
             <div className={styles.navbar}>
                 <img src={Logo} className={styles.logo} />
 
 
                 <ul className={styles.ul}>
-                    <Link to='/Harita'>
-                        <li>Harita</li></Link>
+                    <Link to='/HaritaUser'><li>Harita</li></Link>
+                    <Link to='/aktivite'>
+                        <li>Sosyal Aktiviteler</li></Link>
+                    <Link to='/contact'><li>İletişim</li></Link>
 
 
-                    <li>Hava Durumu</li>
-
-                    <li>Sosyal Aktiviteler</li>
-                    <li>Hakkımızda</li>
-                    <Link to='/LoginNewUser' className={styles['nav-link']}>  <li >Yeni Üye</li></Link>
 
                 </ul>
                 <div className={styles['search-box']}>
@@ -47,4 +38,4 @@ function AdminPage() {
     )
 }
 
-export default AdminPage
+export default UserPage
