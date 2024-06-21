@@ -9,9 +9,6 @@ import { Link } from 'react-router-dom';
 
 function AdminPage() {
 
-
-
-
     return (
         <div className={styles['admin-container']}>
             <div className={styles.navbar}>
@@ -21,28 +18,14 @@ function AdminPage() {
                 <ul className={styles.ul}>
                     <Link to='/Harita'>
                         <li>Harita</li></Link>
-
-
                     <li>Hava Durumu</li>
-
-                    <li>Sosyal Aktiviteler</li>
                     <li>Hakkımızda</li>
-                    <Link to='/LoginNewUser' className={styles['nav-link']}>  <li >Yeni Üye</li></Link>
-
                 </ul>
                 <div className={styles['search-box']}>
                     <input type="text" placeholder='Arama' />
                     <SearchIcon className={styles.icon} />
                 </div>
-
-
             </div>
-
-
-
-
-
-
         </div>
     )
 }

@@ -14,12 +14,7 @@ function UserPage() {
 
                 <ul className={styles.ul}>
                     <Link to='/HaritaUser'><li>Harita</li></Link>
-                    <Link to='/aktivite'>
-                        <li>Sosyal Aktiviteler</li></Link>
                     <Link to='/Iletisim'><li>İletişim</li></Link>
-
-
-
                 </ul>
                 <div className={styles['search-box']}>
                     <input type="text" placeholder='Arama' />

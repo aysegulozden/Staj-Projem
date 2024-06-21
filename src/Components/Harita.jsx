@@ -9,7 +9,7 @@ function Harita() {
     return (
         <div>
             <AdminPage />
-            <Map />
+            <Map userType="admin" />
 
 
         </div>

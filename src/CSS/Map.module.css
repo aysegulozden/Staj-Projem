@@ -11,7 +11,7 @@
     flex-direction: column;
 }
 
-.aktivite input {
+.aktivite select {
 
     width: 99%;
     padding: 15px;
@@ -41,7 +41,7 @@
 }
 
 .form {
-    margin-top: 20px;
+    margin-top: 50pzpx;
 }
 
 .aktivite button {
