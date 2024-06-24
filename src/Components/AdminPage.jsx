@@ -3,11 +3,16 @@ import styles from '../CSS/Admin.module.css'
 import SearchIcon from '@mui/icons-material/Search';
 import Logo from '../image/Logo.png'
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 
 
 
 function AdminPage() {
+    const { t, i18n } = useTranslation();
+    const changeLanguage = (lng) => {
+        i18n.changeLanguage(lng);
+    }
 
     return (
         <div className={styles['admin-container']}>
@@ -17,15 +22,21 @@ function AdminPage() {
 
                 <ul className={styles.ul}>
                     <Link to='/Harita'>
-                        <li>Harita</li></Link>
-                    <li>Hava Durumu</li>
-                    <li>Hakkımızda</li>
+                        <li>{t('map')}</li></Link>
+                    <li>{t('about')}</li>
                 </ul>
                 <div className={styles['search-box']}>
-                    <input type="text" placeholder='Arama' />
+                    <input type="text" placeholder={t('search')} />
                     <SearchIcon className={styles.icon} />
                 </div>
+                <div className={styles['translate-buttons']}>
+
+                    <button onClick={() => changeLanguage('tr')}>Türkçe</button>
+                    <button onClick={() => changeLanguage('en')}>English</button>
+                </div>
+
             </div>
+
         </div>
     )
 }

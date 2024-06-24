@@ -1,16 +1,20 @@
 import React from 'react'
 import styles from '../CSS/Contact.module.css'
 import EmailIcon from '@mui/icons-material/Email';
+import { useTranslation } from 'react-i18next';
 
 
 function Contact() {
-
+    const { t, i18n } = useTranslation();
+    const changeLanguage = (lng) => {
+        i18n.changeLanguage(lng);
+    }
 
     return (
         <div className={styles.container}>
             <div className={styles.contact}>
                 <h2>
-                    <EmailIcon className={styles.emailicon} />Bizimle İletişime Geçin
+                    <EmailIcon className={styles.emailicon} />{t('contact us')}
 
                 </h2>
 
@@ -24,18 +28,19 @@ function Contact() {
             </div>
             <div className={styles.contact}>
                 <form >
-                    <label>Adınız</label>
-                    <input type="text" name='adını' placeholder='Adınız' required />
-                    <label>Telefon Numaranız</label>
-                    <input type="text" name="telefon" placeholder='Telefon Numaranız' required />
-                    <label>E-Mail</label>
-                    <input type="email" name="email" placeholder='E-Mail' required />
-                    <label > Mesajınızı Yazınız</label>
-                    <textarea name="mesaj" rows={10} placeholder='Mesajınız' required ></textarea>
-                    <button type='submit' className={styles.btn} >Gönder</button>
+                    <label>{t('your name')}</label>
+                    <input type="text" name={t('your name')} placeholder={t('your name')} required />
+                    <label>{t('your phone number ')}</label>
+                    <input type="text" name={t('your phone number ')} placeholder={t('your phone number ')} required />
+                    <label>{t('email')}</label>
+                    <input type={t('email')} name={t('email')} placeholder={t('email')} required />
+                    <label > {t('write your message')}</label>
+                    <textarea name={t('write your message')} rows={20} placeholder={t('write your message')} required ></textarea>
+                    <button type='submit' className={styles.btn} > {t('send')}</button>
                 </form>
 
             </div>
+
         </div>
     )
 }

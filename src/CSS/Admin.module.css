@@ -94,3 +94,18 @@
     cursor: pointer;
 
 }
+
+.translate-buttons button {
+    margin-left: 10px;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: gray;
+    color: #fff;
+    font-size: 15px;
+}
+
+.translate-buttons button:hover {
+    background-color: rgb(39, 182, 39);
+}

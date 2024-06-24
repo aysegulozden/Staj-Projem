@@ -2,6 +2,10 @@ import React from 'react';
 import { GoogleMap, useJsApiLoader, Marker, InfoWindow } from '@react-google-maps/api';
 import { useState, useEffect } from 'react';
 import styles from '../CSS/Map.module.css';
+import { Country, State, City } from 'country-state-city';
+import { useTranslation } from 'react-i18next';
+
+
 
 const containerStyle = {
     width: '100%',
@@ -14,19 +18,23 @@ const center = {
 };
 const socialActivities = [
     "Konser",
-    "Sergi",
+    "Şehir Gezisi",
     "Festival",
     "Spor Etkinliği",
     "Tiyatro",
     "Sinema",
     "Yürüyüş",
-    "Diğer"
+    "Kayak Turu",
+    "Yüzme",
+    "Antik Kent Gezisi",
+    "Değer"
 ];
 
 function Map({ userType }) {
+    const { t } = useTranslation();
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
-        googleMapsApiKey: "AIzaSyDz37fhV4HK2tlkJsIU3AZcTjkUjhRPbDk"
+        googleMapsApiKey: "AIzaSyAqqiwodJyyGHCU0mwsitr3H0IxrTio5Jw"
     });
 
     const eventLocations = [
@@ -34,7 +42,8 @@ function Map({ userType }) {
             id: 1,
             name: 'Ankara',
             position: { lat: 39.9334, lng: 32.8597 },
-            description: '30 Ağustos Yürüyüşü'
+            description: '30 Ağustos Yürüyüşü',
+
         },
         {
             id: 2,
@@ -53,6 +62,30 @@ function Map({ userType }) {
             name: 'Mardin',
             position: { lat: 37.3114, lng: 40.7350 },
             description: 'Mardin Şehir Turu'
+        },
+        {
+            id: 5,
+            name: 'Rize',
+            position: { lat: 41.0201, lng: 40.5234 },
+            description: 'Kayak Turu'
+        },
+        {
+            id: 6,
+            name: 'Erzurum',
+            position: { lat: 39.9042, lng: 41.2657 },
+            description: 'Çay Toplama '
+        },
+        {
+            id: 7,
+            name: 'İstanbul',
+            position: { lat: 41.0082, lng: 28.9784 },
+            description: 'Tiyatro '
+        },
+        {
+            id: 8,
+            name: 'Antalya',
+            position: { lat: 36.8969, lng: 30.7133 },
+            description: 'Plaj Voleybolu '
         }
     ];
     const [provinces, setProvinces] = useState([]);
@@ -72,34 +105,21 @@ function Map({ userType }) {
     const [longitude, setLongitude] = useState('');
 
     useEffect(() => {
-        fetchProvinces();
+        const turkishProvinces = State.getStatesOfCountry('TR');
+        setProvinces(turkishProvinces);
     }, []);
 
     useEffect(() => {
         if (selectedProvince) {
-            fetchDistricts(selectedProvince);
+            const provinceData = provinces.find(prov => prov.name === selectedProvince);
+            if (provinceData) {
+                const provinceDistricts = City.getCitiesOfState('TR', provinceData.isoCode);
+                setDistricts(provinceDistricts);
+            }
         }
     }, [selectedProvince]);
 
-    const fetchProvinces = async () => {
-        try {
-            const response = await fetch('https://api.ubilisim.com/turkiye/il');
-            const data = await response.json();
-            setProvinces(data.data);
-        } catch (error) {
-            console.error('Error fetching provinces:', error);
-        }
-    };
 
-    const fetchDistricts = async (province) => {
-        try {
-            const response = await fetch(`https://api.ubilisim.com/turkiye/ilce?il=${province}`);
-            const data = await response.json();
-            setDistricts(data.data);
-        } catch (error) {
-            console.error('Error fetching districts:', error);
-        }
-    };
 
     const onLoad = React.useCallback(function callback(map) {
         const bounds = new window.google.maps.LatLngBounds({ lat: 36.0, lng: 26.0425 }, { lat: 42.1078, lng: 44.7936 });
@@ -112,7 +132,7 @@ function Map({ userType }) {
     }, []);
 
     const handleAddMarker = () => {
-        if (!city || !district || !latitude || !longitude) {
+        if (!city || !district) {
             alert("Lütfen tüm alanları doldurun.");
             return;
         }
@@ -140,6 +160,20 @@ function Map({ userType }) {
     const handleMarkerClick = (marker) => {
         setSelectedEvent(marker);
         setSelectedMarker(marker);
+
+        if (userType === 'user') {
+            if (window.confirm(`Bu etkinliğe katılmak istiyor musunuz?`)) {
+
+                const updatedMarkers = markers.map(m => {
+                    if (m.id === marker.id) {
+
+                        return { ...m, joined: true };
+                    }
+                    return m;
+                });
+                setMarkers(updatedMarkers);
+            }
+        }
     };
 
     const handleInfoWindowClose = () => {
@@ -154,38 +188,45 @@ function Map({ userType }) {
         const updatedMarkers = markers.filter(marker => marker.id !== selectedEvent.id);
         setMarkers(updatedMarkers);
         setSelectedEvent(null);
+        setSelectedMarker(null);
     };
 
     return isLoaded ? (
         <div className={styles.container}>
             {userType === 'admin' && (
+
                 <div className={styles.aktivite} style={{ marginBottom: '10px' }}>
-                    <h2>Yeni Etkinlikler</h2>
+
+                    <h2>{t('new_events')}</h2>
+
                     <div className={styles.form}>
-                        <label>Şehir</label>
+
+                        <label>{t('select_province')}</label>
                         <select value={selectedProvince} onChange={e => setSelectedProvince(e.target.value)} required>
-                            <option value="">Şehir Seçiniz</option>
+                            <option value="">{t('select_province')}</option>
                             {provinces.map(province => (
-                                <option key={province} value={province}>{province}</option>
+                                <option key={province.adi} value={province.name}>{province.name}</option>
                             ))}
                         </select>
 
-                        <label>İlçe</label>
+
+                        <label>{t('select_district')}</label>
                         <select value={selectedDistrict} onChange={e => setSelectedDistrict(e.target.value)} required disabled={!selectedProvince}>
-                            <option value="">İlçe Seçiniz</option>
+                            <option value="">{t('select_district')}</option>
                             {districts.map(district => (
-                                <option key={district} value={district}>{district}</option>
+                                <option key={district.isoCode} value={district.name}>{district.name}</option>
                             ))}
                         </select>
-                        <label>Sosyal Aktivite</label>
+
+                        <label>{t('social_activity')}</label>
                         <select value={selectedActivity} onChange={e => setSelectedActivity(e.target.value)} required disabled={!selectedDistrict}>
-                            <option value="">Sosyal Aktivite Seçiniz</option>
-                            {socialActivities.map(activity => (
-                                <option key={activity} value={activity}>{activity}</option>
+                            <option value="">{t('select_activity')}</option>
+                            {socialActivities.map((activity, index) => (
+                                <option key={index} value={activity}>{activity}</option>
                             ))}
                         </select>
                     </div>
-                    <button type="submit" onClick={handleAddMarker}>Marker Ekle</button>
+                    <button type="submit" onClick={handleAddMarker}>{t('add marker')}</button>
                 </div>
             )}
 
@@ -202,20 +243,21 @@ function Map({ userType }) {
             >
                 {eventLocations.map(event => (
                     <Marker
-                        key={event.id}
+                        key={`event-${event.id}`}
                         position={event.position}
                         onClick={() => handleMarkerClick(event)}
+
                     />
                 ))}
                 {markers.map(marker => (
                     <Marker
-                        key={marker.id}
+                        k key={`marker-${marker.id}`}
                         position={marker.position}
                         onClick={() => handleMarkerClick(marker)}
                     />
                 ))}
 
-                {selectedMarker && (
+                {selectedMarker && selectedEvent && selectedEvent.position && (
                     <InfoWindow
                         position={selectedEvent.position}
                         onCloseClick={handleInfoWindowClose}
@@ -226,14 +268,16 @@ function Map({ userType }) {
                             {selectedMarker.city && selectedMarker.district && (
                                 <>
                                     <h2>{selectedMarker.city} - {selectedMarker.district}</h2>
-                                    <p>Enlem: {selectedMarker.position.lat}</p>
-                                    <p>Boylam: {selectedMarker.position.lng}</p>
+                                    <p>{t('description')} {selectedMarker.position.lat}</p>
+                                    <p>{t('longitude')}:  {selectedMarker.position.lng}</p>
                                 </>
                             )}
                             {userType === 'admin' && (
                                 <>
-                                    <button onClick={handleEditMarker}>Düzenle</button>
-                                    <button onClick={handleDeleteMarker}>Sil</button>
+                                    <div>
+                                        <button onClick={handleEditMarker}>{t('edit')}</button>
+                                        <button onClick={handleDeleteMarker}>{t('delete')}</button>
+                                    </div>
                                 </>
                             )}
                         </div>

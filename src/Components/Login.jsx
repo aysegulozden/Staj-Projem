@@ -3,8 +3,17 @@ import styles from '../CSS/Login.module.css'
 import { Avatar, Grid, Link, Paper, TextField } from '@mui/material'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
 
 function Login() {
+
+    const { t, i18n } = useTranslation();
+    const changeLanguage = (lng) => {
+        i18n.changeLanguage(lng);
+    }
+
+
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
@@ -25,7 +34,7 @@ function Login() {
         }
     };
     const girisUser = () => {
-        navigate('/UserPage')
+        navigate('/HaritaUser')
     }
 
 
@@ -35,14 +44,14 @@ function Login() {
                 <Paper className={styles.paper} elevation={10} >
                     <Grid align='center'>
                         <Avatar className={styles['avatar-login']}><AccountCircleIcon /></Avatar>
-                        <h2> Yönetici Giriş</h2>
+                        <h2>{t('admin login')}</h2>
                     </Grid>
 
                     <TextField
                         id="standard-basic1"
-                        label="Kullanıcı Adı"
+                        label={t('user name')}
                         variant='standard'
-                        placeholder='Kullanıcı Adı'
+                        placeholder={t('user name')}
                         fullWidth
                         value={userName}
                         onChange={(e) => setUserName(e.target.value)} />
@@ -50,16 +59,17 @@ function Login() {
 
                     <TextField
                         id="outlined-password-input2"
-                        label="Password"
+                        label={t('password')}
                         type="password"
                         autoComplete="current-password"
+                        placeholder={t('password')}
                         variant='standard'
                         fullWidth
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
 
-                    <button className={styles['button-login']} type='submit' onClick={handleLogin}>Giriş Yapınız</button>
+                    <button className={styles['button-login']} type='submit' onClick={handleLogin}>{t('login')}</button>
 
 
 
@@ -72,14 +82,14 @@ function Login() {
                 <Paper className={styles.paper} elevation={10} >
                     <Grid align='center'>
                         <Avatar className={styles.avatar}><AccountCircleIcon /></Avatar>
-                        <h2> Kullanıcı Girişi</h2>
+                        <h2> {t('user login')}</h2>
                     </Grid>
 
                     <TextField
                         id="standard-basic"
                         label="Kullanıcı Adı"
                         variant='standard'
-                        placeholder='Kullanıcı Adı'
+                        placeholder={t('user name')}
                         fullWidth
                     />
 
@@ -87,6 +97,7 @@ function Login() {
                     <TextField
                         id="outlined-password-input"
                         label="Password"
+                        placeholder={t('password')}
                         type="password"
                         autoComplete="current-password"
                         variant='standard'
@@ -94,16 +105,20 @@ function Login() {
 
                     />
 
-                    <button className={styles.button} type='submit' onClick={girisUser} >Giriş Yapınız</button>
+                    <button className={styles.button} type='submit' onClick={girisUser} >{t('login')}</button>
 
                     <Link className={styles.link} href="/newUser" >
-                        Kayıt Ol
+                        {t('register')}
                     </Link>
 
 
                 </Paper>
 
             </Grid>
+            <div className={styles['translate-buttons']}>
+                <button onClick={() => changeLanguage('tr')}>Türkçe</button>
+                <button onClick={() => changeLanguage('en')}>English</button>
+            </div>
         </div>
     )
 }
