@@ -8,6 +8,8 @@ import UserPage from './Components/UserPage'
 import Harita from './Components/Harita'
 import HaritaUser from './Components/HaritaUser'
 import Iletisim from './Components/Iletisim'
+import About from './Components/About'
+import AboutUser from './Components/AboutUser'
 
 
 
@@ -26,6 +28,8 @@ function App() {
         <Route path='/Harita' element={<Harita />} />
         <Route path='/HaritaUser' element={<HaritaUser />} />
         <Route path='/Iletisim' element={<Iletisim />} />
+        <Route path='/about' element={<About />} />
+        <Route path='/AboutUser' element={<AboutUser />} />
       </Routes>
 
     </div>

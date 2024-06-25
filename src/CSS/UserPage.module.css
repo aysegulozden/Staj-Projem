@@ -16,6 +16,8 @@
     justify-content: space-between;
     background-color: #067EED;
     padding: 15px 7%;
+    position: static;
+    z-index: 1000;
 }
 
 .ul {

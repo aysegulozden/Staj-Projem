@@ -23,7 +23,7 @@ function AdminPage() {
                 <ul className={styles.ul}>
                     <Link to='/Harita'>
                         <li>{t('map')}</li></Link>
-                    <li>{t('about')}</li>
+                    <Link to='/about'> <li>{t('about')}</li></Link>
                 </ul>
                 <div className={styles['search-box']}>
                     <input type="text" placeholder={t('search')} />

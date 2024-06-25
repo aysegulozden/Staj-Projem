@@ -30,5 +30,6 @@
     "delete": "Delete",
     "latitude": "Latitude",
     "longitude": "Longitude",
-    "description": "Description"
+    "description": "Description",
+    "About": "ABOUT"
 }

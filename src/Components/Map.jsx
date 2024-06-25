@@ -34,7 +34,7 @@ function Map({ userType }) {
     const { t } = useTranslation();
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
-        googleMapsApiKey: "AIzaSyAqqiwodJyyGHCU0mwsitr3H0IxrTio5Jw"
+        googleMapsApiKey: "AIzaSyC0w2OzfJObKLfYNdvAF9xlFkVzf9MH0bA"
     });
 
     const eventLocations = [
@@ -133,6 +133,7 @@ function Map({ userType }) {
 
     const handleAddMarker = () => {
         if (!city || !district) {
+
             alert("Lütfen tüm alanları doldurun.");
             return;
         }
@@ -181,6 +182,7 @@ function Map({ userType }) {
     };
 
     const handleEditMarker = () => {
+        //güncelleme yapacak olduğum
 
     };
 
@@ -205,7 +207,7 @@ function Map({ userType }) {
                         <select value={selectedProvince} onChange={e => setSelectedProvince(e.target.value)} required>
                             <option value="">{t('select_province')}</option>
                             {provinces.map(province => (
-                                <option key={province.adi} value={province.name}>{province.name}</option>
+                                <option key={province.isoCode} value={province.name}>{province.name}</option>
                             ))}
                         </select>
 
@@ -214,7 +216,7 @@ function Map({ userType }) {
                         <select value={selectedDistrict} onChange={e => setSelectedDistrict(e.target.value)} required disabled={!selectedProvince}>
                             <option value="">{t('select_district')}</option>
                             {districts.map(district => (
-                                <option key={district.isoCode} value={district.name}>{district.name}</option>
+                                <option key={district.isoCode} value={district.isoCode}>{district.name}</option>
                             ))}
                         </select>
 
@@ -251,7 +253,7 @@ function Map({ userType }) {
                 ))}
                 {markers.map(marker => (
                     <Marker
-                        k key={`marker-${marker.id}`}
+                        key={`marker-${marker.id}`}
                         position={marker.position}
                         onClick={() => handleMarkerClick(marker)}
                     />

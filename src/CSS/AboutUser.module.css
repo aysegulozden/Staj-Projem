@@ -1,0 +1,42 @@
+.container {
+    margin: 80px auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: center;
+}
+
+.box {
+    height: 500px;
+    width: 500px;
+
+}
+
+.about {
+    max-width: 450px;
+    list-style: 0.3;
+    font-size: 20px;
+    color: black;
+}
+
+.dsc {
+    font-size: 30px;
+    font-family: 'Times New Roman', Times, serif;
+
+}
+
+.cnt {
+    align-items: center;
+}
+
+.icon {
+    margin-top: 10px;
+    align-items: center;
+    font-size: larger;
+}
+
+.logo {
+    width: 600px;
+    height: 500px;
+    font-size: x-large;
+}

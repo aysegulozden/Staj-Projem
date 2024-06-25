@@ -48,3 +48,26 @@
 .paper .button:hover {
     background-color: #7755c7;
 }
+
+.translate-buttons {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    display: flex;
+    gap: 10px;
+
+}
+
+.translate-buttons button {
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: gray;
+    color: #fff;
+    font-size: 15px;
+}
+
+.translate-buttons button:hover {
+    background-color: rgb(39, 182, 39);
+}

@@ -2,9 +2,17 @@ import React from 'react'
 import styles from '../CSS/Contact.module.css'
 import EmailIcon from '@mui/icons-material/Email';
 import { useTranslation } from 'react-i18next';
+import { useState } from 'react';
+
 
 
 function Contact() {
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setIsSubmitted(true);
+        // Buraya form gönderme işlemini ekle, örneğin sunucuya veri gönderme gibi.
+    }
     const { t, i18n } = useTranslation();
     const changeLanguage = (lng) => {
         i18n.changeLanguage(lng);
@@ -38,6 +46,7 @@ function Contact() {
                     <textarea name={t('write your message')} rows={20} placeholder={t('write your message')} required ></textarea>
                     <button type='submit' className={styles.btn} > {t('send')}</button>
                 </form>
+                {isSubmitted && <p className={styles.successMessage}>{t('Mesajınız başarıyla iletilmiştir.')}</p>}
 
             </div>
 

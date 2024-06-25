@@ -11,11 +11,16 @@
 }
 
 .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     background-color: #067EED;
     padding: 15px 7%;
+
 }
 
 .ul {

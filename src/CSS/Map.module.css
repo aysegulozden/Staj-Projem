@@ -64,3 +64,25 @@
     background-color: rgb(37, 145, 37);
 
 }
+
+.green-marker {
+    width: 24px;
+    height: 24px;
+    background-color: green;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.red-marker {
+    width: 24px;
+    height: 24px;
+    background-color: red;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}

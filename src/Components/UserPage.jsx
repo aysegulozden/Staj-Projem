@@ -20,6 +20,7 @@ function UserPage() {
                 <ul className={styles.ul}>
                     <Link to='/HaritaUser'><li>{t('map')}</li></Link>
                     <Link to='/Iletisim'><li>{t('contact')}</li></Link>
+                    <Link to='/AboutUser'> <li>{t('about')}</li></Link>
                 </ul>
                 <div className={styles['search-box']}>
                     <input type="text" placeholder={t('search')} />

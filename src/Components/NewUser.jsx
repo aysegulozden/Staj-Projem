@@ -59,7 +59,7 @@ function newUser() {
                 </Paper>
 
             </Grid>
-            <div>
+            <div className={styles['translate-buttons']}>
                 <button onClick={() => changeLanguage('tr')}>Türkçe</button>
                 <button onClick={() => changeLanguage('en')}>English</button>
             </div>

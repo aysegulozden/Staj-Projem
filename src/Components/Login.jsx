@@ -22,7 +22,7 @@ function Login() {
         e.preventDefault();
 
         if (userName === 'aysegul' && password === '123456') {
-            navigate('/admin');
+            navigate('/Harita');
         }
 
         else {
