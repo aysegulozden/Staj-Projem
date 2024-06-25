@@ -26,6 +26,8 @@
     "select_district": "İlçe Seçiniz",
     "social_activity": "Sosyal Aktivite",
     "select_activity": "Sosyal Aktivite Seçiniz",
+    "enter_latitude": "Enlem Değerini Giriniz",
+    "enter_longitude": "Boylam Değerini Giriniz",
     "edit": "Düzenle",
     "delete": "Sil",
     "latitude": "Enlem",

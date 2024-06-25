@@ -34,7 +34,7 @@ function Map({ userType }) {
     const { t } = useTranslation();
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
-        googleMapsApiKey: "AIzaSyC0w2OzfJObKLfYNdvAF9xlFkVzf9MH0bA"
+        googleMapsApiKey: "AIzaSyDz37fhV4HK2tlkJsIU3AZcTjkUjhRPbDk"
     });
 
     const eventLocations = [
@@ -132,24 +132,21 @@ function Map({ userType }) {
     }, []);
 
     const handleAddMarker = () => {
-        if (!city || !district) {
-
+        if (!selectedDistrict || !latitude || !longitude || !selectedActivity) {
             alert("Lütfen tüm alanları doldurun.");
             return;
         }
-
         const newMarker = {
             id: markers.length + 1,
-            name: `Etkinlik ${markers.length + 1}`,
-            city,
-            district,
+            name: selectedActivity,
+            city: selectedProvince,
+            district: selectedDistrict,
             position: {
                 lat: parseFloat(latitude),
                 lng: parseFloat(longitude)
             },
-            description: 'Yeni etkinlik açıklaması'
+            description: selectedActivity
         };
-
         setMarkers([...markers, newMarker]);
         setCity('');
         setDistrict('');
@@ -182,8 +179,30 @@ function Map({ userType }) {
     };
 
     const handleEditMarker = () => {
-        //güncelleme yapacak olduğum
-
+        if (!selectedMarker) return;
+        setCity(selectedMarker.city);
+        setDistrict(selectedMarker.district);
+        setLatitude(selectedMarker.position.lat);
+        setLongitude(selectedMarker.position.lng);
+        setSelectedActivity(selectedMarker.description);
+        // Mevcut marker bilgilerini güncelleyin
+        const updatedMarkers = markers.map(marker => {
+            if (marker.id === selectedMarker.id) {
+                return {
+                    ...marker,
+                    city,
+                    district,
+                    position: {
+                        lat: parseFloat(latitude),
+                        lng: parseFloat(longitude)
+                    },
+                    description: selectedActivity
+                };
+            }
+            return marker;
+        });
+        setMarkers(updatedMarkers);
+        setSelectedMarker(null);
     };
 
     const handleDeleteMarker = () => {
@@ -219,6 +238,26 @@ function Map({ userType }) {
                                 <option key={district.isoCode} value={district.isoCode}>{district.name}</option>
                             ))}
                         </select>
+                        <label>{t('latitude')}</label>
+                        <input
+                            type="number"
+                            value={('latitude')}
+                            onChange={e => setLatitude(e.target.value)}
+                            required
+                            disabled={!selectedDistrict}
+                            placeholder={t('enter_latitude')}
+                        />
+
+                        <label>{t('longitude')}</label>
+                        <input
+                            type="number"
+                            value={longitude}
+                            onChange={e => setLongitude(e.target.value)}
+                            required
+                            disabled={!selectedDistrict}
+                            placeholder={t('enter_longitude')}
+                        />
+
 
                         <label>{t('social_activity')}</label>
                         <select value={selectedActivity} onChange={e => setSelectedActivity(e.target.value)} required disabled={!selectedDistrict}>
